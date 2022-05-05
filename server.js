@@ -79,9 +79,9 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../pay-app-tsx/public', 'index.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../pay-app-tsx/public', 'index.html'));
+// });
 
 app.post('/api/info', function (request, response, next) {
   response.json({
@@ -120,19 +120,6 @@ app.post('/api/create_link_token', function (request, response, next) {
       response.json(createTokenResponse.data);
     })
     .catch(next);
-});
-app.get('/create-link-token', async (req, res) => {
-  const { link_token: linkToken } = await plaidClient.createLinkToken({
-    user: {
-      client_user_id: 'some-unique-identifier',
-    },
-    client_name: 'App of Tyler',
-    products: ['auth', 'identity'],
-    country_codes: ['US'],
-    language: 'en',
-  });
-
-  res.json({ linkToken });
 });
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
