@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+.left {
+  position: absolute;
+  left: 0;
+  width: 60vw;
+  height: 100vh;
+  background-image: linear-gradient(to right, #fff, #fff);
+    z-index: -1;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.right {
+  position: absolute;
+  right: 0;
+  width: 60vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.right .strip-top {
+  width: calc(50vw + 90px);
+  transform: skewX(20deg) translateX(160px);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.right .strip-bottom {
+  width: calc(50vw + 40px);
+  transform: skewX(-15deg) translateX(90px);
 }
-
-.App-link {
-  color: #61dafb;
+.strip-bottom,
+.strip-top {
+  position: absolute;
+  right: 0;
+  height: inherit;
+  background-image: linear-gradient(to bottom, #bbd6ff, #06367d);
+  box-shadow: 0 0 10px 0px rgba(0,0,0,0.5);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.strip-bottom {
+  width: 200px;
+  transform: skewX(-15deg) translateX(50px);
+}
+.strip-top {
+  width: 180px;
+  transform: skewX(20deg) translateX(50px);
+}
+.payment-background {
+  position: fixed;
+  width: 100%;
+  z-index: -3;
 }

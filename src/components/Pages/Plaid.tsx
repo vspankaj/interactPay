@@ -2,6 +2,8 @@ import React, { useCallback, useState, useEffect } from 'react';
 
 import { usePlaidLink, PlaidLinkOnSuccess } from 'react-plaid-link';
 import axios from "axios";
+import './Plaid.css';
+import { link } from 'fs';
 
 
 const Plaid = () => {
@@ -9,7 +11,7 @@ const Plaid = () => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [bankData, setBankData] = useState([{}])
 
-  
+
   // get link_token from your server when component mounts
 
 
@@ -54,13 +56,22 @@ const Plaid = () => {
     console.log(JSON.stringify(response.data));
   }
 
+  // async function linkstripe() {
+  //   var data = { access_token: accessToken, account_id: "9PxR9p9MajukGgdKZvkzc5d5kKDGDwtE9kMMv" };
+  //   console.log(data)
+  //   var response = await axios.post("/api/get_banktoken", data);
+  //   console.log(JSON.stringify(response.data));
+  // }
+
+  
   return (
     <>
-
-      <button className='btn btn-success' onClick={() => open()} disabled={!ready}>
-        Connect a bank account
-      </button>
-      {/* {(typeof bankData === 'undefined') ? (
+      <div className='plaidLauncherContainer'>
+        <div className='vertical-center'>
+          <button className='btn btn-success d-block lnch-btn mb-2' onClick={() => open()} disabled={!ready}>
+            Connect a bank account
+          </button>
+          {/* {(typeof bankData === 'undefined') ? (
         <p>loading</p>
       ) : (
         bankData.map((acc, i) => (
@@ -68,9 +79,16 @@ const Plaid = () => {
         ))
 
       )} */}
-      <button className='btn btn-success' onClick={() => getbanktocken()}>
-        Get Bank Tocken
-      </button>
+          <button className='btn btn-secondary d-block lnch-btn mb-2' onClick={() => getbanktocken()}>
+            Get Bank Tocken
+          </button>
+
+          
+          {/* <button className='btn btn-secondary d-block lnch-btn' onClick={() => linkstripe()}>
+            Link Stripe
+          </button> */}
+        </div>
+      </div>
     </>
   );
 };
